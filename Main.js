@@ -34,7 +34,7 @@ var cpuSpeed=6; //The speed of the CPU paddle; the faster it is the harder the g
 var xSpeed = 5;
 var ySpeed = 5;
 
-var ticker = new Object;
+var Ticker = new Object();
 
 //preloader
 var preloader; 				//contains the PreloadJS Object
@@ -64,8 +64,8 @@ function Main()
 				{src:"main.png", id:"main"},
 				{src:"startButton.png", id: "startButton"},
 				{src:"creditsButton.png", id:"creditsButton"},
-				{src:"credits.png", id:"credits"}.
-				{src:"paddle.png", "cpu"},
+				{src:"credits.png", id:"credits"},
+				{src:"paddle.png", id:"cpu"},
 				{src:"paddle.png", id:"player"},
 				{src:"ball.png", id:"ball"},
 				{src:"win.png", id: "winPopup"},
