@@ -86,5 +86,90 @@ function Main()
 	/* Ticker */
 
 	Ticker.setFPS(30);
-	Ticker.addListener(stage);
+		Ticker.addListener(stage);
+};
+
+function handleProgress(event) {
+	//use event.loaded to get the percentage of the loading
+}
+
+function handleComplete(event) {
+	//triggered whell all loading is complete
+}
+
+function handleFileLoad(event) {
+	//triggered when an individual file completes loading
+	
+	switch(event.type) {
+		case PreloadJS.IMAGE:
+			//image loaded
+			var img = new Image();
+			 img.src= event.src;
+			 img.onload = handleLoadComplete;
+			 window[event.id] = new Bitmap(img);
+			break;
+			
+			case PreloadJS.SOUND:
+				//sound loaded
+				handleLoadComplete();
+				break;
+	}	
+}
+function handleLoadComplete(event) {
+	
+	totalLoaded++;
+	
+	if(manifest.length === totalLoaded) {
+		addTitleView();
+	}
+}
+
+function addTitleView() {
+	//console.log("Add Title View");
+	startButton.x = 240 - 31.5;
+	startButton.y = 160;
+	startButton.name = 'startButton';
+	
+	creditsButton.x = 241 - 42;
+	creditsButton.y = 200;
+	
+	TitleView.addChild(main, startButton, creditsButton);
+	stage.addChild(bg, TitleView);
+	stage.update();
+	
+	//Button Listeners
+	
+	startButton.onPress = tweenTitleView;
+	creditsButton.onPress = showCredits;
+	
+}
+fucntion showCredits() {
+	//Show Credits
+
+	credits.x = 480;
+
+	stage.addChild(credit);
+	stage.update();
+	Tween.get(credits).to({x:0}, 300);
+	credits.onPress = hideCredits;
+
+}
+
+//Hide Credits
+
+function hideCredits(e) {
+	Tween.get(credits).to({x:480}, 300).call(rmvCredits);
+}
+
+//Remove Credits
+
+function rmvCredits() {
+	stage.removeChild(credits);
+}
+
+//Tween Title View
+function tweenTitleView() {
+	//Start Game
+
+	Tween.get(TitleView).to({y:-320}, 300).call(addGameView);
 }
