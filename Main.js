@@ -161,8 +161,7 @@ function addTitleView() {
 	startButton.onPress = tweenTitleView;
 	creditsButton.onPress = showCredits;
 	
-<<<<<<< HEAD
-=======
+
 }
 function showCredits() {
 	//Show Credits
@@ -226,14 +225,14 @@ function addGameView() {
 
 	//Start Listener
 
-	bg.onPress. = startGame;
+	bg.onPress = startGame;
 }
 
 function startGame(e) {
 	bg.onPress = null;
 	stage.onMouseMove = movePaddle;
 
-	Ticker.addListener(ticker, false)l
+	Ticker.addListener(ticker, false);
 	ticker.tick = update;
 }
 
@@ -259,19 +258,19 @@ function alert(e) {
 	stage.onMouseMove = null;
 	bg.onPress = null;
 
-	if(e == 'win') {
-		win.x = 140;
-		win.y = -90;
+	if(e == 'winPopup') {
+		winPopup.x = 140;
+		winPopup.y = -90;
 
-		stage.addChild(win);
-		Tween.get(win).to({y: 115}, 300);
+		stage.addChild(winPopup);
+		Tween.get(winPopup).to({y: 115}, 300);
 
 	} else {
-		lost.x = 140;
-		lose.y = -90;
+		losePopup.x = 140;
+		losePopup.y = -90;
 
-		stage.addChild(lose);
-		Tween.get(lose).to({y: 115}, 300);
+		stage.addChild(losePopup);
+		Tween.get(losePopup).to({y: 115}, 300);
 	}
 }
 
@@ -333,15 +332,13 @@ function update() {
 
 	if(playerScore.text == '10')
     {
-        alert('win');
+        alert('winPopup');
     }
      
     /* Check for Game Over */
      
     if(cpuScore.text == '10')
     {
-        alert('lose');
+        alert('losePopup');
     }
-}
->>>>>>> df9e2822d081bc93f3fc566835ff0a72a366a8f0
 }
