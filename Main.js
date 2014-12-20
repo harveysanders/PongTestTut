@@ -143,7 +143,7 @@ function addTitleView() {
 	creditsButton.onPress = showCredits;
 	
 }
-fucntion showCredits() {
+function showCredits() {
 	//Show Credits
 
 	credits.x = 480;
@@ -172,4 +172,66 @@ function tweenTitleView() {
 	//Start Game
 
 	Tween.get(TitleView).to({y:-320}, 300).call(addGameView);
+}
+
+function addGameView() {
+	//Destroy Menu & Credits screen
+
+	stage.removeChild(TitleView);
+	TitleView = null;
+	credits = null;
+
+	//Add Game View
+
+	player.x = 2;
+	player.y = 160 - 37.5;
+	cpu.x = 480 - 25;
+	cpu.y = 160 - 37.5;
+	ball.x = 240 - 15;
+	ball.y = 240 - 15;
+
+	//Score
+
+	playerScore = new Text('0', 'bold 20px Arial', '#A3FF24');
+	playerScore.x = 211;
+	playerScore.y = 20;
+
+	cpuScore = new Text('0', 'bold 20px Arial', '#A3FF24');
+	cpuScore.X = 262;
+	cpuScore.y = 20;
+
+	stage.addChild(playerScore, cpuScore, player, cpu, ball);
+	stage.update();
+
+	//Start Listener
+
+	bg.onPress. = startGame;
+}
+
+function startGame(e) {
+	bg.onPress = null;
+	stage.onMouseMove = movePaddle;
+
+	Ticker.addListener(ticker, false)l
+	ticker.tick = update;
+}
+
+function movePaddle(e) {
+	//Mouse Movement
+	player.y = e.stageY;
+}
+
+//Reset
+
+function reset() {
+	ball.x = 240 - 15;
+    ball.y = 160 - 15;
+    player.y = 160 - 37.5;
+    cpu.y = 160 - 37.5;
+     
+    stage.onMouseMove = null;
+    Ticker.removeListener(ticker);
+    bg.onPress = startGame;
+}
+
 }
