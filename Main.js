@@ -43,6 +43,23 @@ var totalLoaded = 0;		//holds number of files already loaded
 
 var TitleView = new Container();
 
+/*
+                         _
+ _._ _..._ .-',     _.._(`))
+'-. `     '  /-._.-'    ',/
+   )         \            '.
+  / _    _    |             \
+ |  a    a    /              |
+ \   .-.                     ;  
+  '-('' ).-'       ,'       ;
+     '-;           |      .'
+        \           \    /
+        | 7  .__  _.-\   \
+        | |  |  ``/  /`  /
+       /,_|  |   /,_/   /
+          /,_/      '`-'
+*/
+
 function Main()
 {
 	/* Link Canvas */
@@ -232,6 +249,26 @@ function reset() {
     stage.onMouseMove = null;
     Ticker.removeListener(ticker);
     bg.onPress = startGame;
+}
+function alert(e) {
+	Ticker.removeListener(ticker);
+	stage.onMouseMove = null;
+	bg.onPress = null;
+
+	if(e == 'win') {
+		win.x = 140;
+		win.y = -90;
+
+		stage.addChild(win);
+		Tween.get(win).to({y: 115}, 300);
+
+	} else {
+		lost.x = 140;
+		lose.y = -90;
+
+		stage.addChild(lose);
+		Tween.get(lose).to({y: 115}, 300);
+	}
 }
 
 }
