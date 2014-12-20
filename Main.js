@@ -271,4 +271,72 @@ function alert(e) {
 	}
 }
 
+function update() {
+	//Ball movement
+
+	ball.x = ball.x + xSpeed;
+	ball.y = ball.y + ySpeed;
+
+	//CPU Movement
+
+	if(cpu.y < ball.y) {
+		cpu.y = cpu.y + 4;
+	}else if(cpu.y > ball.y) {
+		cpu.y = cpu.y - 4;
+	}
+
+	//Wall collision
+
+	if((ball.y) < 0) { ySpeed = -ySpeed; SoundJS.play('wall'); };//UP
+	if ((ball.y + (30)) > 320) { ySpeed = -ySpeed; SoundJS.play('wall'); }; //Down
+
+	//CPU Score
+
+	if((ball.x) < 0) {
+		xSpeed = -xSpeed;
+		playerScore.text = parseInt(playerScore.text + 1);
+		reset();
+		SoundJS.play('playerScore');
+	}
+
+	// CPU collision
+
+	if(ball.x + 30 > cpu.x 
+		&& ball.x + 30 < cpu.x + 22 
+		&& ball.y >= cpu.y 
+		&& ball.y < cpu.y + 75) {
+		xSpeed *= -1;
+		SoundJS.play('hit');
+	}
+
+	//Player collision
+
+	if(ball.x <= player.x + 22 
+		&& ball.x > player.x
+		&& ball.y >= player.y
+		&& ball.y < player.y +75) {
+		xSpeed *= -1;
+		SoundJS.play('hit');
+	}
+
+	//Stop paddle from going off canvas
+
+	if(player.y >= 249) {
+		player.y = 249;
+	}
+
+	//Check for win
+
+	if(playerScore.text == '10')
+    {
+        alert('win');
+    }
+     
+    /* Check for Game Over */
+     
+    if(cpuScore.text == '10')
+    {
+        alert('lose');
+    }
+}
 }
