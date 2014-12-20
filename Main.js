@@ -88,3 +88,58 @@ function Main()
 	Ticker.setFPS(30);
 	Ticker.addListener(stage);
 }
+
+function handleProgress(event) {
+	//use event.loaded to get the percentage of the loading
+}
+
+function handleComplete(event) {
+	//triggered whell all loading is complete
+}
+
+function handleFileLoad(event) {
+	//triggered when an individual file completes loading
+	
+	switch(event.type) {
+		case PreloadJS.IMAGE:
+			//image loaded
+			var img = new Image();
+			 img.src= event.src;
+			 img.onload = handleLoadComplete;
+			 window[event.id] = new Bitmap(img);
+			break;
+			
+			case PreloadJS.SOUND:
+				//sound loaded
+				handleLoadComplete();
+				break;
+	}	
+}
+function handleLoadComplete(event) {
+	
+	totalLoaded++;
+	
+	if(manifest.length === totalLoaded) {
+		addTitleView();
+	}
+}
+
+function addTitleView() {
+	//console.log("Add Title View");
+	startButton.x = 240 - 31.5;
+	startButton.y = 160;
+	startButton.name = 'startButton';
+	
+	creditsButton.x = 241 - 42;
+	creditsButton.y = 200;
+	
+	TitleView.addChild(main, startButton, creditsButton);
+	stage.addChild(bg, TitleView);
+	stage.update();
+	
+	//Button Listeners
+	
+	startButton.onPress = tweenTitleView;
+	creditsButton.onPress = showCredits;
+	
+}
