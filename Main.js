@@ -28,7 +28,7 @@ var losePopup;
 
 var playerScore;
 var cpuScore;
-var cpuSpeed=6; //The speed of the CPU paddle; the faster it is the harder the game is
+var cpuSpeed = 4; //The speed of the CPU paddle; the faster it is the harder the game is
 
 // Variables
 var xSpeed = 5;
@@ -94,7 +94,7 @@ function Main()
 	];
 
 	preloader = new PreloadJS();
-	preloader.installPLugin(SoundJS);
+//	preloader.installPLugin(SoundJS);
 	preloader.onProgress = handleProgress;
 	preloader.onComplete = handleComplete;
 	preloader.onFileLoad = handleFileLoad;
@@ -283,9 +283,9 @@ function update() {
 	//CPU Movement
 
 	if(cpu.y < ball.y) {
-		cpu.y = cpu.y + 4;
+		cpu.y = cpu.y + cpuSpeed;
 	}else if(cpu.y > ball.y) {
-		cpu.y = cpu.y - 4;
+		cpu.y = cpu.y - cpuSpeed;
 	}
 
 	//Wall collision
