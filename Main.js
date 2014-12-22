@@ -28,6 +28,7 @@ var losePopup;
 
 var playerScore;
 var cpuScore;
+
 var cpuSpeed = 6; //The speed of the CPU paddle; the faster it is the harder the game is
 
 // Variables
