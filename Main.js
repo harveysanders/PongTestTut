@@ -34,7 +34,7 @@ var cpuSpeed = 4; //The speed of the CPU paddle; the faster it is the harder the
 var xSpeed = 5;
 var ySpeed = 5;
 
-var Ticker = new Object();
+var tkr = new Object();
 
 //preloader
 var preloader; 				//contains the PreloadJS Object
@@ -79,18 +79,18 @@ function Main()
 	manifest = [
 				{src:"bg.png", id:"bg"},
 				{src:"main.png", id:"main"},
-				{src:"startButton.png", id: "startButton"},
-				{src:"creditsButton.png", id:"creditsButton"},
+				{src:"startB.png", id: "startButton"},
+				{src:"creditsB.png", id:"creditsButton"},
 				{src:"credits.png", id:"credits"},
 				{src:"paddle.png", id:"cpu"},
 				{src:"paddle.png", id:"player"},
 				{src:"ball.png", id:"ball"},
 				{src:"win.png", id: "winPopup"},
 				{src:"lose.png", id:"losePopup"},
-				{src:"playerScore.mp3|playerScore.ogg", id:"playerScore"},
-				{src:"enemyScore.mp3|enemyScore.ogg", id:"enemyScore"},
-                {src:"hit.mp3|hit.ogg", id:"paddleHit"},
-                {src:"wall.mp3|wall.ogg", id:"wall"}
+				{src:"playerScore.ogg", id:"playerScore"},
+				{src:"enemyScore.ogg", id:"enemyScore"},
+                {src:"hit.ogg", id:"paddleHit"},
+                {src:"wall.ogg", id:"wall"}
 	];
 
 	preloader = new PreloadJS();
@@ -232,8 +232,8 @@ function startGame(e) {
 	bg.onPress = null;
 	stage.onMouseMove = movePaddle;
 
-	Ticker.addListener(ticker, false);
-	ticker.tick = update;
+	Ticker.addListener(tkr, false);
+	tkr.tick = update;
 }
 
 function movePaddle(e) {
@@ -250,11 +250,11 @@ function reset() {
     cpu.y = 160 - 37.5;
      
     stage.onMouseMove = null;
-    Ticker.removeListener(ticker);
+    Ticker.removeListener(tkr);
     bg.onPress = startGame;
 }
 function alert(e) {
-	Ticker.removeListener(ticker);
+	Ticker.removeListener(tkr);
 	stage.onMouseMove = null;
 	bg.onPress = null;
 
