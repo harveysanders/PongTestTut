@@ -218,7 +218,7 @@ function addGameView() {
 	playerScore.y = 20;
 
 	cpuScore = new Text('0', 'bold 20px Arial', '#A3FF24');
-	cpuScore.X = 262;
+	cpuScore.x = 262;
 	cpuScore.y = 20;
 
 	stage.addChild(playerScore, cpuScore, player, cpu, ball);
